@@ -7,6 +7,7 @@ import { useHistory, useRouteMatch } from "react-router-dom";
 const MenuItem = ({ title, imageUrl, size, linkUrl }) => {
   const history = useHistory();
   const match = useRouteMatch();
+
   return (
     <div
       className={`${size} menu-item`}
