@@ -29,6 +29,7 @@ const SignUp = () => {
         email,
         password
       );
+      console.log(user);
 
       await createUserProfileDocument(user, { displayName });
       setSignUpValues({
