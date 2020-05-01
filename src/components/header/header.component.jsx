@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import { auth } from "../../firebase/firebase.utils";
 
@@ -7,7 +8,9 @@ import "./header.styles.scss";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-function Header({ currentUser }) {
+function Header() {
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   return (
     <div className="header">
       <Link className="logo-container" to="/">

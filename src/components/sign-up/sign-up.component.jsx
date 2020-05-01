@@ -52,7 +52,7 @@ const SignUp = () => {
     <div className="sign-up">
       <h2 className="title">I do not have a account</h2>
       <span>Sign up with </span>
-      <form clasName="sign-up-form" onSubmit={handleSubmit}>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
           type="text"
           name="displayName"
