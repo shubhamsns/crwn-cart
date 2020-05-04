@@ -9,7 +9,7 @@ import {
 
 import "./checkout-item.styles.scss";
 
-function CheckoutItem({ cartItem }) {
+const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   const dispatch = useDispatch();
 
@@ -37,6 +37,6 @@ function CheckoutItem({ cartItem }) {
       </div>
     </div>
   );
-}
+};
 
 export default CheckoutItem;

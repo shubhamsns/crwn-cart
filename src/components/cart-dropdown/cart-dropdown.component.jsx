@@ -10,7 +10,7 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 import "./cart-dropdown.styles.scss";
 
-function CartDropdown() {
+const CartDropdown = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,6 +41,6 @@ function CartDropdown() {
       </CustomButton>
     </div>
   );
-}
+};
 
 export default CartDropdown;

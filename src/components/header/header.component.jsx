@@ -13,7 +13,7 @@ import "./header.styles.scss";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
-function Header() {
+const Header = () => {
   const dispatch = useDispatch();
   const structuredSelector = createStructuredSelector({
     currentUser: selectCurrentUser,
@@ -48,6 +48,6 @@ function Header() {
       {hidden ? null : <CartDropdown />}
     </div>
   );
-}
+};
 
 export default Header;

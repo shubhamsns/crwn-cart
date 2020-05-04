@@ -9,7 +9,7 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 
 import "./collection.styles.scss";
 
-function CollectionPage() {
+const CollectionPage = () => {
   const match = useRouteMatch();
 
   const {
@@ -30,6 +30,6 @@ function CollectionPage() {
       </div>
     </div>
   );
-}
+};
 
 export default CollectionPage;

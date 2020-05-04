@@ -11,7 +11,7 @@ import {
 
 import "./checkout.styles.scss";
 
-function Checkout() {
+const Checkout = () => {
   const { cartItems, total } = useSelector(
     createStructuredSelector({
       cartItems: selectCartItems,
@@ -46,6 +46,6 @@ function Checkout() {
       </div>
     </div>
   );
-}
+};
 
 export default Checkout;
