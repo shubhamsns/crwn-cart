@@ -5,9 +5,11 @@ import { createStructuredSelector } from "reselect";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { selectCartItemsCount } from "../../redux/cart/cart.selector";
 
-import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-
-import "./cart-icon.styles.scss";
+import {
+  ShoppingIcon,
+  ItemCountContainer,
+  CartContainer,
+} from "./cart-icon.styles";
 
 const CartIcon = () => {
   const dispatch = useDispatch();
@@ -18,13 +20,13 @@ const CartIcon = () => {
   );
 
   return (
-    <div className="cart-icon">
+    <CartContainer>
       <ShoppingIcon
         className="shopping-icon"
         onClick={() => dispatch(toggleCartHidden())}
       />
-      <span className="item-count">{itemCount}</span>
-    </div>
+      <ItemCountContainer>{itemCount}</ItemCountContainer>
+    </CartContainer>
   );
 };
 
