@@ -25,7 +25,7 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());
-  }, []);
+  }, [dispatch]);
 
   const { isFetchingCollections, isCollectionLoaded } = useSelector(
     createStructuredSelector({
