@@ -9,6 +9,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../redux/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import {
   CheckoutPageContainer,
@@ -17,12 +18,20 @@ import {
   TotalContainer,
   WarningContainer,
 } from "./checkout.styles";
+import CustomButton from "../../components/custom-button/custom-button.component";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const { cartItems, total } = useSelector(
     createStructuredSelector({
       cartItems: selectCartItems,
       total: selectCartTotal,
+    })
+  );
+
+  const { currentUser } = useSelector(
+    createStructuredSelector({
+      currentUser: selectCurrentUser,
     })
   );
 
@@ -54,7 +63,14 @@ const Checkout = () => {
         <br />
         4242 4242 4242 4242 - Exp: 'Any Future Date' - CVV: 123
       </WarningContainer>
-      <StripeCheckoutButton price={total} />
+
+      {currentUser ? (
+        <StripeCheckoutButton price={total} />
+      ) : (
+        <Link to="/signin">
+          <CustomButton>Sign in to Checkout</CustomButton>
+        </Link>
+      )}
     </CheckoutPageContainer>
   );
 };

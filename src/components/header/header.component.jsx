@@ -38,6 +38,8 @@ const Header = () => {
           <>
             <OptionLink to="/orders">ORDERS</OptionLink>
 
+            <OptionLink to="/checkout">CHECKOUT</OptionLink>
+
             <OptionLink as="div" onClick={() => auth.signOut()}>
               SIGN OUT
             </OptionLink>
