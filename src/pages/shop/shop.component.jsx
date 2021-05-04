@@ -9,6 +9,8 @@ import {
   selectIsCollectionsLoaded,
 } from "../../redux/shop/shop.selectors";
 
+import { ShopPageContainer } from "./shop.styles";
+
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 
 import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
@@ -33,7 +35,7 @@ const Shop = () => {
   );
 
   return (
-    <div className="shop-page">
+    <ShopPageContainer>
       <Route
         exact
         path={`${match.path}`}
@@ -54,7 +56,7 @@ const Shop = () => {
           />
         )}
       />
-    </div>
+    </ShopPageContainer>
   );
 };
 

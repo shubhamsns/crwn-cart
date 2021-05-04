@@ -5,5 +5,3 @@ export const HomepageContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-
-HomepageContainer.displayName = "HomepageContainer";
