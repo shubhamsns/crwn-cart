@@ -1,13 +1,33 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 import StripeCheckout from "react-stripe-checkout";
 
-const StripeCheckoutButton = ({ price }) => {
+import { auth, firestore } from "../../firebase/firebase.utils";
+import CartActionTypes from "../../redux/cart/cart.types";
+
+const StripeCheckoutButton = ({ price, cartItems }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_g5OmgBYs64zmcAVibofJVSVg00EGk51dzQ";
 
-  const onToken = (token) => {
-    console.log("token", token);
-    alert("payment Successful");
+  const onToken = async () => {
+    const { uid } = auth.currentUser;
+    await firestore
+      .collection("users")
+      .doc(uid)
+      .collection("orders")
+      .add({
+        order: cartItems,
+        createdAt: Date.now(),
+      })
+      .then(() => dispatch({ type: CartActionTypes.CLEAR_ITEM_FROM_CART }))
+      .catch((e) => console.log(e));
+
+    alert("succesful payment");
+    history.push("/orders");
   };
 
   return (

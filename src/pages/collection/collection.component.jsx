@@ -16,9 +16,7 @@ import {
 const CollectionPage = () => {
   const match = useRouteMatch();
 
-  const {
-    collection: { title, items },
-  } = useSelector(
+  const { collection } = useSelector(
     createStructuredSelector({
       collection: selectCollection(match.params.collectionId),
     })
@@ -26,9 +24,9 @@ const CollectionPage = () => {
 
   return (
     <CollectionPageContainer>
-      <CollectionTitle>{title}</CollectionTitle>
+      <CollectionTitle>{collection?.title}</CollectionTitle>
       <CollectionItemsContainer>
-        {items.map((item) => (
+        {collection?.items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
       </CollectionItemsContainer>

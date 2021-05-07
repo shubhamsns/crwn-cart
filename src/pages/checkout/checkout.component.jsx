@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
@@ -19,7 +20,6 @@ import {
   WarningContainer,
 } from "./checkout.styles";
 import CustomButton from "../../components/custom-button/custom-button.component";
-import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const { cartItems, total } = useSelector(
@@ -54,18 +54,30 @@ const Checkout = () => {
           <span>Remove</span>
         </HeaderBlockContainer>
       </CheckoutHeaderContainer>
+
       {cartItems.map((cartItem) => (
-        <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        <CheckoutItem key={cartItem.id} cartItem={cartItem} checkout />
       ))}
       <TotalContainer>TOTAL: ${total}</TotalContainer>
-      <WarningContainer>
-        *Please use the following test credit card for payments*
-        <br />
-        4242 4242 4242 4242 - Exp: 'Any Future Date' - CVV: 123
-      </WarningContainer>
+
+      {cartItems.length && (
+        <WarningContainer>
+          *Please use the following test credit card for payments*
+          <br />
+          4242 4242 4242 4242 - Exp: 'Any Future Date' - CVV: 123
+        </WarningContainer>
+      )}
 
       {currentUser ? (
-        <StripeCheckoutButton price={total} />
+        <>
+          {total > 0 ? (
+            <StripeCheckoutButton cartItems={cartItems} price={total} />
+          ) : (
+            <Link to="/shop">
+              <CustomButton>Shop Items</CustomButton>
+            </Link>
+          )}
+        </>
       ) : (
         <Link to="/signin">
           <CustomButton>Sign in to Checkout</CustomButton>

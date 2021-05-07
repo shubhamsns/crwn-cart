@@ -15,7 +15,7 @@ import {
   RemoveButtonContainer,
 } from "./checkout-item.styles";
 
-const CheckoutItem = ({ cartItem }) => {
+const CheckoutItem = ({ cartItem, checkout }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   const dispatch = useDispatch();
 
@@ -26,16 +26,26 @@ const CheckoutItem = ({ cartItem }) => {
       </ImageContainer>
       <TextContainer>{name}</TextContainer>
       <QuantityContainer>
-        <div onClick={() => dispatch(removeItem(cartItem))}>&#10094;</div>
-        <span>{quantity}</span>
-        <div onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
+        {checkout ? (
+          <>
+            <div onClick={() => dispatch(removeItem(cartItem))}>&#10094;</div>
+            <span>{quantity}</span>
+            <div onClick={() => dispatch(addItem(cartItem))}>&#10095;</div>
+          </>
+        ) : (
+          <span>{quantity}</span>
+        )}
       </QuantityContainer>
       <TextContainer>{price}</TextContainer>
-      <RemoveButtonContainer
-        onClick={() => dispatch(clearItemFromCart(cartItem))}
-      >
-        &#10005;
-      </RemoveButtonContainer>
+      {checkout ? (
+        <RemoveButtonContainer
+          onClick={() => dispatch(clearItemFromCart(cartItem))}
+        >
+          &#10005;
+        </RemoveButtonContainer>
+      ) : (
+        <RemoveButtonContainer>{quantity * price}</RemoveButtonContainer>
+      )}
     </CheckoutItemContainer>
   );
 };
