@@ -64,6 +64,19 @@ const SignIn = () => {
           <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
             Sign in with Google
           </CustomButton>
+
+          <CustomButton
+            style={{ marginTop: "15px" }}
+            type="button"
+            onClick={() => {
+              auth.signInWithEmailAndPassword(
+                "happybrahmagupta@email.com",
+                "password"
+              );
+            }}
+          >
+            Guest Login
+          </CustomButton>
         </ButtonsBarContainer>
       </form>
     </SignInContainer>
